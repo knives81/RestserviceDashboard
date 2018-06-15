@@ -1,0 +1,4 @@
+docker run -p 32768:27017 --name mongo-test -d mongo
+docker run -p 32769:27017 --name mongo-int -d mongo
+
+docker run -p 8090:8090 -v /home/azure/rest_home:/home/ --name restSV -d mauriziopinzi/restdashboard

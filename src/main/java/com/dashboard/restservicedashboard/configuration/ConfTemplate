@@ -1,0 +1,47 @@
+Collection:testsetConf
+
+{
+"tagNames": ["PMO","Cycle"],
+"testsetNodes":[
+	{
+	"index":0,
+	"testsetIds":[7001,7009,7008,6997,6998,6976,7000,6999,7557,7007,7010,6906,7217],
+	"tags":["PMOyyy122","CA"],
+	"target": {"domain":"GICT_ITALY_MERCATO", "project": "P32_CRM_T"}
+	}
+	]
+}
+
+Collection:defectConf
+{
+    "tagNames" : [ 
+        "PMO"
+    ],
+	"filters": [{"field":"user-01", "values":["ANOMALIA DI COLLAUDO","REGRESSIONE DI COLLAUDO"]}],
+    "defectNodes" : [ 
+        {
+            "index" : 0,
+            "filter" : "\\\"user-template-02='PMOyyy94'\\\"",
+            "tags" : [ 
+                "PMOyyy94"
+            ],
+            "target" : {
+                "domain" : "GICT_ITALY_MERCATO",
+                "project" : "P32_CRM_T"
+            }
+        }
+    ]
+}
+
+Collection:chartItem
+
+{
+"confId":1,
+"ids":[0,1,2]},
+"desc":"PMOyyy122 - CFI",
+"tags":["PMOyyy122","CFI"],
+"chartType":"piechart",
+"entityType":"testset",
+"isVisible":true,
+"usernames":["aaa","bbb"]
+}
