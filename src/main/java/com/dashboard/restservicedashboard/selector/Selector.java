@@ -23,7 +23,7 @@ public class Selector {
 				return Chart.ChartType.valueOf(item.getTagSelected());
 			}			
 		}
-		throw new RuntimeException("No Chart Found");
+		throw new RuntimeException("No ChartJs Found");
 	}
 	
 	

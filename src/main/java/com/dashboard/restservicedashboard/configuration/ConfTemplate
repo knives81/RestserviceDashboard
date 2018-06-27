@@ -35,13 +35,31 @@ Collection:defectConf
 
 Collection:chartItem
 
-{
-"confId":1,
-"ids":[0,1,2]},
-"desc":"PMOyyy122 - CFI",
-"tags":["PMOyyy122","CFI"],
-"chartType":"piechart",
-"entityType":"testset",
-"isVisible":true,
-"usernames":["aaa","bbb"]
-}
+
+db.chartItem.insert({
+    "confId" : 10, "ids" : [1], "desc" : "AO004972 Dati Catastali CFI",
+    "tags" : ["AO004972","CFI"], "chartType" : "PIECHART", "entityType" : "TESTSET",
+    "isVisible" : true,"usernames" : []
+});
+db.chartItem.insert({
+    "confId" : 11, "ids" : [1], "desc" : "AO004972 Dati Catastali CFI - Storico",
+    "tags" : ["AO004972","CFI"], "chartType" : "LINECHART", "entityType" : "TESTSET",
+    "isVisible" : true,"usernames" : []
+});
+db.chartItem.insert({
+    "confId" : 12, "ids" : [0], "desc" : "AO004972 Dati Catastali CA",
+    "tags" : ["AO004972","CA"], "chartType" : "PIECHART", "entityType" : "TESTSET",
+    "isVisible" : true,"usernames" : []
+});
+db.chartItem.insert({
+    "confId" : 13, "ids" : [0], "desc" : "AO004972 Dati Catastali CA - Storico",
+    "tags" : ["AO004972","CA"], "chartType" : "LINECHART", "entityType" : "TESTSET",
+    "isVisible" : true,"usernames" : []
+});
+db.chartItem.insert({
+    "confId" : 14, "ids" : [3], "desc" : "AO004972 Dati Catastali - Defect",
+    "tags" : ["AO004972","CFI","CA"], "chartType" : "PIECHART", "entityType" : "DEFECT",
+    "isVisible" : true,"usernames" : []
+});
+
+db.dataRow.remove({ $and:[{"_class" : "com.restdashboard.domain.DataRowTestconfig"}, {"configurationIndex" : 12}]});

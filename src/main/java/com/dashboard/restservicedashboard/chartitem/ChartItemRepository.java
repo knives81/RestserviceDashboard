@@ -1,4 +1,4 @@
-package com.dashboard.restservicedashboard.alm;
+package com.dashboard.restservicedashboard.chartitem;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

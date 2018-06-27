@@ -3,14 +3,15 @@ package com.dashboard.restservicedashboard.alm;
 import com.dashboard.commondashboard.Chart;
 import com.dashboard.commondashboard.DataRow;
 import com.dashboard.commondashboard.Entity;
+import com.dashboard.restservicedashboard.chartitem.ChartItem;
+import com.dashboard.restservicedashboard.chartitem.ChartItemRepository;
 import com.dashboard.restservicedashboard.configuration.AppProperties;
+import com.dashboard.restservicedashboard.configuration.Entity2DataRowMapper;
 import com.dashboard.restservicedashboard.domaincontroller.ChartData;
 import com.dashboard.restservicedashboard.domaincontroller.ChartMatrix;
-import com.dashboard.restservicedashboard.domaincontroller.Entity2DataRowMapper;
 import com.dashboard.restservicedashboard.selector.ConfigurationService;
 import com.dashboard.restservicedashboard.selector.Selector;
 import com.dashboard.restservicedashboard.selector.SelectorManager;
-import com.dashboard.restservicedashboard.usagelog.UsageLog;
 import com.dashboard.restservicedashboard.usagelog.UsageLogRepository;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -40,10 +41,7 @@ public class AlmDataService {
 	@Autowired
 	@Setter
     private ChartItemRepository chartItemRepository;
-	
-	@Autowired
-	@Setter
-    private UsageLogRepository usageLogRepository;
+
 	
 	@Autowired
 	private ConfigurationService configurationService;
@@ -98,13 +96,6 @@ public class AlmDataService {
 		return selectorManager.computeSelectors(configurationService);
 	}
 
-	public List<ChartItem> getChartItems(String username, String userTag) {
-		
-		UsageLog usageLog = new UsageLog(username, new Date(), "ChartItemList");
-		usageLogRepository.save(usageLog);
 
-		ChartItemFilter chartItemFilter = new ChartItemFilter(chartItemRepository.findAll(),username,userTag);
 
-		return chartItemFilter.filter();
-	}
 }

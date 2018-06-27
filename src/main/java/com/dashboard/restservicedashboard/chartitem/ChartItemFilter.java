@@ -1,4 +1,4 @@
-package com.dashboard.restservicedashboard.alm;
+package com.dashboard.restservicedashboard.chartitem;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

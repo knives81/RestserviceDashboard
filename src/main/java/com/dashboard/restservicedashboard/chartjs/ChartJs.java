@@ -14,7 +14,7 @@ import java.util.List;
     "colors",
     "options"
 })
-public class Chart {
+public class ChartJs {
 
     @JsonProperty("type")
     private String type;
@@ -35,7 +35,7 @@ public class Chart {
         this.type = type;
     }
 
-    public Chart withType(String type) {
+    public ChartJs withType(String type) {
         this.type = type;
         return this;
     }
@@ -50,7 +50,7 @@ public class Chart {
         this.data = data;
     }
 
-    public Chart withData(Data data) {
+    public ChartJs withData(Data data) {
         this.data = data;
         return this;
     }
@@ -65,7 +65,7 @@ public class Chart {
         this.colors = colors;
     }
 
-    public Chart withColors(List<Color> colors) {
+    public ChartJs withColors(List<Color> colors) {
         this.colors = colors;
         return this;
     }
@@ -80,7 +80,7 @@ public class Chart {
         this.options = options;
     }
 
-    public Chart withOptions(Options options) {
+    public ChartJs withOptions(Options options) {
         this.options = options;
         return this;
     }

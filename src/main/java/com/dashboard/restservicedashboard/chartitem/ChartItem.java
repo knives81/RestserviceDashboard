@@ -1,5 +1,5 @@
 
-package com.dashboard.restservicedashboard.alm;
+package com.dashboard.restservicedashboard.chartitem;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

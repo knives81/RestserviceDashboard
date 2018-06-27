@@ -1,5 +1,8 @@
 package com.dashboard.restservicedashboard.chartjs;
 
+import com.dashboard.commondashboard.Chart;
+import lombok.Getter;
+
 import java.util.List;
 
 public interface ChartJsCompatible {
@@ -9,5 +12,6 @@ public interface ChartJsCompatible {
 	List<Dataset> getDatasets();
 	List<String> getColors();
 	String getDataSetName();
+	Chart.ChartType getChartType();
 
 }

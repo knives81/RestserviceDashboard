@@ -81,7 +81,7 @@ public class ChartMatrixTest {
 
 		ChartData chartData = chartMatrix.computePieChart("2018-01-02");
 
-		//assertEquals(values, chartData.getDatasets().get(Chart.PIE_CHART_DATASET_NAME));
+		//assertEquals(values, chartData.getDatasets().get(ChartJs.PIE_CHART_DATASET_NAME));
 		assertEquals(labels, chartData.getLabels());
 		assertEquals(colors, chartData.getColors());
 	}

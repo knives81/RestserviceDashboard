@@ -1,4 +1,4 @@
-package com.dashboard.restservicedashboard.domaincontroller;
+package com.dashboard.restservicedashboard.configuration;
 
 
 
