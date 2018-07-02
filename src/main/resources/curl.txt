@@ -7,6 +7,7 @@ curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -
 curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -d '{"username":"mdonne","password":"mdonne1"}' -H "Content-Type:application/json"
 curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -d '{"username":"xxmiles","password":"xxmiles9"}' -H "Content-Type:application/json"
 curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -d '{"username":"sbelelli","password":"sbelelli6"}' -H "Content-Type:application/json"
+curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -d '{"username":"apepe","password":"apepe7"}' -H "Content-Type:application/json"
 
 --AlmDashboardController
 curl -u mpinzi:pa33w0rd http://localhost:8090/chartitem
