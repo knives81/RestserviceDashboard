@@ -2,6 +2,7 @@ package com.dashboard.restservicedashboard.error;
 
 import org.json.JSONException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,8 +33,15 @@ public class GlobalExceptionHandler {
     public String handleException4(Exception e){
 
     	return e.getMessage();
-    }  
-    
-    
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(value = BadCredentialsException.class)
+    public String xxx(Exception e){
+
+        return e.getMessage();
+    }
+
+
 
 }
