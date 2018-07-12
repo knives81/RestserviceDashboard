@@ -1,6 +1,8 @@
 package com.dashboard.restservicedashboard.admin;
 
 
+import com.dashboard.commondashboard.Account;
+import com.dashboard.commondashboard.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class AdminController {
 	public ResponseEntity addAccount(@RequestBody Account account) {
 		Account foundAccount = accountRepository.findByUsername(account.getUsername());
 		if (foundAccount == null) {				
-			accountRepository.save(new Account(account.getUsername(),passwordEncoder.encode(account.getPassword())));
+			accountRepository.save(new Account(account.getUsername(),passwordEncoder.encode(account.getPassword()),account.getRole(),account.getPushoverKey()));
 		}
 		return new ResponseEntity(HttpStatus.OK);
 	}

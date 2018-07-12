@@ -1,10 +1,7 @@
 package com.dashboard.restservicedashboard;
 
-import com.dashboard.restservicedashboard.admin.Account;
-import com.dashboard.restservicedashboard.admin.AccountRepository;
 import com.dashboard.restservicedashboard.info.Infos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,14 +13,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackages="com.dashboard")
@@ -47,8 +39,13 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().fullyAuthenticated()
-				.and().httpBasic().and().authorizeRequests().and().csrf().disable();
+		http
+				.authorizeRequests()
+				.antMatchers("/users/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+				.anyRequest().authenticated()
+				.and().httpBasic()
+				.and().csrf().disable();
 	}
 
 	@Autowired

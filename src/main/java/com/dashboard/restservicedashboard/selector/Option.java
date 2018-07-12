@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ToString
 @Builder
 @NoArgsConstructor
 public class Option {

@@ -12,7 +12,6 @@ import com.dashboard.restservicedashboard.domaincontroller.ChartMatrix;
 import com.dashboard.restservicedashboard.selector.ConfigurationService;
 import com.dashboard.restservicedashboard.selector.Selector;
 import com.dashboard.restservicedashboard.selector.SelectorManager;
-import com.dashboard.restservicedashboard.usagelog.UsageLogRepository;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ public class AlmDataService {
 	private static final Logger log = LoggerFactory.getLogger(AlmDataService.class);
 
 	public ChartData getChartData(Selector selector) {
-		List<Integer> ids = selectorManager.getConfPositionIndex(appProp, selector);
+		List<Integer> ids = selectorManager.getConfPositionIndex(selector);
         Entity.EntityType entityType = selector.getEntityType();
 		Chart.ChartType chartType = selector.identifyChartType();
 
@@ -57,11 +56,26 @@ public class AlmDataService {
 	}
 
 	public ChartData getChartData(Integer confId) {
-		ChartItem chartItem = chartItemRepository.findAll().stream().filter(item -> item.getConfId()==confId).findFirst().get();
-		String title = chartItem.getDesc();
-		List<Integer> ids = chartItem.getIds();
-        Entity.EntityType entityType = Entity.EntityType.valueOf(chartItem.getEntityType());
-		Chart.ChartType chartType = Chart.ChartType.valueOf(chartItem.getChartType());
+		List<ChartItem> chartItems  = chartItemRepository.findAll();
+
+		ChartItem chartItemFound = new ChartItem();
+		Boolean found = false;
+		for(ChartItem chartItem : chartItems) {
+			if(chartItem.getConfId().equals(confId)) {
+				chartItemFound = chartItem;
+				found = true;
+				break;
+			}
+		}
+		if(!found) {
+			throw new RuntimeException();
+		}
+
+
+		String title = chartItemFound.getDesc();
+		List<Integer> ids = chartItemFound.getIds();
+        Entity.EntityType entityType = Entity.EntityType.valueOf(chartItemFound.getEntityType());
+		Chart.ChartType chartType = Chart.ChartType.valueOf(chartItemFound.getChartType());
 
 		return buildChartData(ids, entityType, chartType, title);
 

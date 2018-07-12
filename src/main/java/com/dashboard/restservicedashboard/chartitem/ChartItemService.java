@@ -1,6 +1,7 @@
 package com.dashboard.restservicedashboard.chartitem;
 
 import com.dashboard.restservicedashboard.alm.AlmDataService;
+import com.dashboard.restservicedashboard.notification.NotificationManager;
 import com.dashboard.restservicedashboard.usagelog.UsageLog;
 import com.dashboard.restservicedashboard.usagelog.UsageLogRepository;
 import lombok.Setter;
@@ -25,11 +26,16 @@ public class ChartItemService {
     @Setter
     private ChartItemRepository chartItemRepository;
 
+    @Autowired
+    @Setter
+    private NotificationManager notificationManager;
+
 
     public List<ChartItem> getChartItems(String username, String userTag) {
 
         UsageLog usageLog = new UsageLog(username, new Date(), "ChartItemList");
         usageLogRepository.save(usageLog);
+        notificationManager.sendMessage(username);
 
         ChartItemFilter chartItemFilter = new ChartItemFilter(chartItemRepository.findAll(),username,userTag);
 

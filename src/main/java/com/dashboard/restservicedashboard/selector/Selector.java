@@ -4,10 +4,12 @@ import com.dashboard.commondashboard.Chart;
 import com.dashboard.commondashboard.Entity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 public class Selector {
 	
 	@Getter
