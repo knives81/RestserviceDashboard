@@ -131,7 +131,16 @@ public class SelectorManager {
         return new ArrayList<Integer>(confPositionIndexResult);
 	}
 
-	public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+	public String getTitleFromSelected(Selector selector) {
+		String selectorTitle = "";
+		for(Option option : selector.getItems()) {
+			selectorTitle += option.getTagSelected();
+			selectorTitle += " ";
+		}
+		return selectorTitle;
+	}
+
+	private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
 		Set<Object> seen = ConcurrentHashMap.newKeySet();
 		return t -> seen.add(keyExtractor.apply(t));
 	}

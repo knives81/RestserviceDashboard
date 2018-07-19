@@ -26,16 +26,10 @@ public class ChartItemService {
     @Setter
     private ChartItemRepository chartItemRepository;
 
-    @Autowired
-    @Setter
-    private NotificationManager notificationManager;
-
-
     public List<ChartItem> getChartItems(String username, String userTag) {
 
         UsageLog usageLog = new UsageLog(username, new Date(), "ChartItemList");
         usageLogRepository.save(usageLog);
-        notificationManager.sendMessage(username);
 
         ChartItemFilter chartItemFilter = new ChartItemFilter(chartItemRepository.findAll(),username,userTag);
 

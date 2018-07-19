@@ -9,9 +9,12 @@ import com.dashboard.restservicedashboard.configuration.AppProperties;
 import com.dashboard.restservicedashboard.configuration.Entity2DataRowMapper;
 import com.dashboard.restservicedashboard.domaincontroller.ChartData;
 import com.dashboard.restservicedashboard.domaincontroller.ChartMatrix;
+import com.dashboard.restservicedashboard.notification.NotificationManager;
 import com.dashboard.restservicedashboard.selector.ConfigurationService;
+import com.dashboard.restservicedashboard.selector.Option;
 import com.dashboard.restservicedashboard.selector.Selector;
 import com.dashboard.restservicedashboard.selector.SelectorManager;
+import com.dashboard.restservicedashboard.utils.Util;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,9 +44,12 @@ public class AlmDataService {
 	@Setter
     private ChartItemRepository chartItemRepository;
 
-	
 	@Autowired
 	private ConfigurationService configurationService;
+
+	@Autowired
+	@Setter
+	private NotificationManager notificationManager;
 
 	private static final Logger log = LoggerFactory.getLogger(AlmDataService.class);
 
@@ -51,31 +57,18 @@ public class AlmDataService {
 		List<Integer> ids = selectorManager.getConfPositionIndex(selector);
         Entity.EntityType entityType = selector.getEntityType();
 		Chart.ChartType chartType = selector.identifyChartType();
-
-		return buildChartData(ids, entityType, chartType, "Selector");
+		return buildChartData(ids, entityType, chartType, selectorManager.getTitleFromSelected(selector) );
 	}
 
 	public ChartData getChartData(Integer confId) {
-		List<ChartItem> chartItems  = chartItemRepository.findAll();
+		ChartItem chartItem = chartItemRepository.findAll().stream()
+				.filter(item -> item.getConfId().equals(confId))
+				.findFirst().get();
 
-		ChartItem chartItemFound = new ChartItem();
-		Boolean found = false;
-		for(ChartItem chartItem : chartItems) {
-			if(chartItem.getConfId().equals(confId)) {
-				chartItemFound = chartItem;
-				found = true;
-				break;
-			}
-		}
-		if(!found) {
-			throw new RuntimeException();
-		}
-
-
-		String title = chartItemFound.getDesc();
-		List<Integer> ids = chartItemFound.getIds();
-        Entity.EntityType entityType = Entity.EntityType.valueOf(chartItemFound.getEntityType());
-		Chart.ChartType chartType = Chart.ChartType.valueOf(chartItemFound.getChartType());
+		String title = chartItem.getDesc();
+		List<Integer> ids = chartItem.getIds();
+        Entity.EntityType entityType = Entity.EntityType.valueOf(chartItem.getEntityType());
+		Chart.ChartType chartType = Chart.ChartType.valueOf(chartItem.getChartType());
 
 		return buildChartData(ids, entityType, chartType, title);
 
@@ -83,6 +76,10 @@ public class AlmDataService {
 
 	private ChartData buildChartData(List<Integer> ids, Entity.EntityType entityType,
 									 Chart.ChartType chartType, String title) {
+
+		String username = Util.getUserName();
+		notificationManager.sendMessage(username + ":"  + title);
+
 		List<DataRow> dataRows = readEntitiesFromDb(ids, entityType);
 		ChartMatrix chartMatrix = chartDataComputer.transform(dataRows);
 
