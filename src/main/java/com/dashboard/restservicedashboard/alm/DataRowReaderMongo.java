@@ -26,9 +26,7 @@ public class DataRowReaderMongo implements DataRowReader {
 		
 		String _class = className;
 		String recordDate = subtractDaysFromToday(days);
-		List<DataRow> dataRowsFromDb = dataRowRepository.findEntitiesWihtConfigurationIndex(_class, ids, recordDate);	
-		log.info(dataRowsFromDb.toString());
-		
+		List<DataRow> dataRowsFromDb = dataRowRepository.findEntitiesWihtConfigurationIndex(_class, ids, recordDate);
 		return dataRowsFromDb;
 		
 	}
