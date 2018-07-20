@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -27,4 +29,17 @@ public class ChartItemController {
         String username = Util.getUserName();
         return chartItemService.getChartItems(username,tag);
     }
+
+    @CrossOrigin
+    @ApiOperation(value = "getChartItemGroup", nickname = "getChartItemGroup")
+    @RequestMapping(method = RequestMethod.GET, path = "/chartitemgroup", produces = "application/json")
+    public List<ChartItemWithGroup> getChartItemGroup(@RequestParam(required = false, value = "filter") String tag) {
+        String username = Util.getUserName();
+        List<ChartItem> chartItems = chartItemService.getChartItems(username,tag);
+
+        List<ChartItemWithGroup> chartItemWithGroups = chartItemService.getChartItemWithGroups(chartItems);
+        return chartItemWithGroups;
+    }
+
+
 }

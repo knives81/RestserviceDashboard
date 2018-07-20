@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -34,5 +36,24 @@ public class ChartItemService {
         ChartItemFilter chartItemFilter = new ChartItemFilter(chartItemRepository.findAll(),username,userTag);
 
         return chartItemFilter.filter();
+    }
+
+    public List<ChartItemWithGroup> getChartItemWithGroups(List<ChartItem> chartItems) {
+        List<ChartItemWithGroup> chartItemWithGroups = new ArrayList<>();
+
+        HashMap<String,List<ChartItem>> groupToChartItems = new HashMap<>();
+        for(ChartItem chartItem : chartItems){
+            String group = chartItem.getTags().get(0);
+            if(groupToChartItems.get(group)==null) {
+                List<ChartItem> chartItemsForGroup = new ArrayList<>();
+                chartItemsForGroup.add(chartItem);
+                groupToChartItems.put(group,chartItemsForGroup);
+            } else {
+                groupToChartItems.get(group).add(chartItem);
+            }
+        }
+
+        groupToChartItems.forEach((k, v) -> chartItemWithGroups.add(new ChartItemWithGroup(k,v)));
+        return chartItemWithGroups;
     }
 }
