@@ -12,6 +12,7 @@ curl -i -X POST -u mpinzi:pa33w0rd http://ubuntupinzi4.cloudapp.net:8090/users -
 --AlmDashboardController
 curl -u mpinzi:pa33w0rd http://localhost:8090/chartitem
 curl -u mpinzi:pa33w0rd http://localhost:8090/chartitem?filter=red
+curl -u mpinzi:pa33w0rd http://dashboardazure.eastus.cloudapp.azure.com:8090/chartitemgroup
 curl -u mpinzi:pa33w0rd http://localhost:8090/chart/0
 curl -u mpinzi:pa33w0rd http://localhost:8090/chartdata/0
 

@@ -32,10 +32,10 @@ public class ChartItemServiceTest {
         List<ChartItemWithGroup> chartItemWithGroups = aut.getChartItemWithGroups(chartItemList);
 
         Assert.assertEquals("Tag1",chartItemWithGroups.get(0).getGroup());
-        Assert.assertEquals(Integer.valueOf(0),chartItemWithGroups.get(0).getChartItemList().get(0).getConfId());
-        Assert.assertEquals(Integer.valueOf(1),chartItemWithGroups.get(0).getChartItemList().get(1).getConfId());
+        Assert.assertEquals(Integer.valueOf(0),chartItemWithGroups.get(0).getChartItems().get(0).getConfId());
+        Assert.assertEquals(Integer.valueOf(1),chartItemWithGroups.get(0).getChartItems().get(1).getConfId());
         Assert.assertEquals("Tag2",chartItemWithGroups.get(1).getGroup());
-        Assert.assertEquals(Integer.valueOf(2),chartItemWithGroups.get(1).getChartItemList().get(0).getConfId());
+        Assert.assertEquals(Integer.valueOf(2),chartItemWithGroups.get(1).getChartItems().get(0).getConfId());
 
 
 

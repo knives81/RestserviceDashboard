@@ -11,6 +11,6 @@ import java.util.List;
 public class ChartItemWithGroup {
 
     @Getter String group;
-    @Getter List<ChartItem> chartItemList;
+    @Getter List<ChartItem> chartItems;
 
 }
