@@ -81,7 +81,6 @@ public class SelectorManager {
 				}
 			}
 		}
-		System.out.println(helpers);
 		return helpers;
 	}
 
@@ -100,8 +99,6 @@ public class SelectorManager {
 		for (Option option : selector.getItems()) {
 			String tagName = option.getTagName();
 			String tagValueSelected = option.getTagSelected();
-
-			System.out.println(tagName + " " +tagValueSelected);
 
             if (!SelectorConstant.CHART_TYPE_LABEL.equals(tagName)) {
 

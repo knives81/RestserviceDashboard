@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ChartItemService {
@@ -41,7 +38,7 @@ public class ChartItemService {
     public List<ChartItemWithGroup> getChartItemWithGroups(List<ChartItem> chartItems) {
         List<ChartItemWithGroup> chartItemWithGroups = new ArrayList<>();
 
-        HashMap<String,List<ChartItem>> groupToChartItems = new HashMap<>();
+        LinkedHashMap<String,List<ChartItem>> groupToChartItems = new LinkedHashMap<>();
         for(ChartItem chartItem : chartItems){
             String group = chartItem.getTags().get(0);
             if(groupToChartItems.get(group)==null) {
