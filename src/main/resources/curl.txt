@@ -16,6 +16,10 @@ curl -u mpinzi:pa33w0rd http://dashboardazure.eastus.cloudapp.azure.com:8090/cha
 curl -u mpinzi:pa33w0rd http://localhost:8090/chart/0
 curl -u mpinzi:pa33w0rd http://localhost:8090/chartdata/0
 
+curl -u mpinzi:pa33w0rd http://dashboardazure.eastus.cloudapp.azure.com:8089/chartitem
+
+
+
 --InfoController
 curl -u mpinzi:pa33w0rd http://localhost:8090/infoapp
 
