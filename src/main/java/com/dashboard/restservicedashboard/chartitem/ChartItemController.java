@@ -45,7 +45,7 @@ public class ChartItemController {
 
     @Scheduled(fixedRateString = "60000")
     public void keepalive() {
-        chartItemService.keepalive();
+        //chartItemService.keepalive();
 
     }
 
