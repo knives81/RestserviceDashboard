@@ -9,7 +9,7 @@ public class MongoDbSettings {
 
     @Bean
     public MongoClientOptions mongoOptions() {
-        return MongoClientOptions.builder().socketTimeout(3000).socketKeepAlive(true).build();
+        return MongoClientOptions.builder().socketTimeout(10000).build();
     }
 
 }
