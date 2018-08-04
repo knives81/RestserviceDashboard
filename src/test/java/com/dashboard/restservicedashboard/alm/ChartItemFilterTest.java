@@ -1,6 +1,5 @@
 package com.dashboard.restservicedashboard.alm;
 
-import com.dashboard.restservicedashboard.chartitem.ChartItem;
 import com.dashboard.restservicedashboard.chartitem.ChartItemFilter;
 import org.junit.Test;
 

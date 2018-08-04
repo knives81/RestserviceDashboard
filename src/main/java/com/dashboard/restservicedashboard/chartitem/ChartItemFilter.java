@@ -1,5 +1,6 @@
 package com.dashboard.restservicedashboard.chartitem;
 
+import com.dashboard.commondashboard.ChartItem;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 

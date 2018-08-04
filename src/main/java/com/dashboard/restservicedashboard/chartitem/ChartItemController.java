@@ -1,15 +1,14 @@
 package com.dashboard.restservicedashboard.chartitem;
 
 
+import com.dashboard.commondashboard.ChartItem;
+import com.dashboard.commondashboard.ChartItemWithGroup;
 import com.dashboard.restservicedashboard.utils.Util;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
