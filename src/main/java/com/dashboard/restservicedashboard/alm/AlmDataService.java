@@ -1,8 +1,6 @@
 package com.dashboard.restservicedashboard.alm;
 
-import com.dashboard.commondashboard.Chart;
-import com.dashboard.commondashboard.DataRow;
-import com.dashboard.commondashboard.Entity;
+import com.dashboard.commondashboard.*;
 import com.dashboard.restservicedashboard.configuration.AppProperties;
 import com.dashboard.restservicedashboard.configuration.Entity2DataRowMapper;
 import com.dashboard.restservicedashboard.domaincontroller.ChartData;

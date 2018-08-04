@@ -1,5 +1,7 @@
 package com.dashboard.restservicedashboard.alm;
 
+import com.dashboard.commondashboard.ChartItem;
+import com.dashboard.commondashboard.ChartItemWithGroup;
 import com.dashboard.restservicedashboard.chartitem.ChartItemService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,15 +16,15 @@ public class ChartItemServiceTest {
         ChartItemService aut = new ChartItemService();
 
         ChartItem chartItem1 = new ChartItem();
-        chartItem1.setIndex(0);
+        chartItem1.setConfId(0);
         chartItem1.setTags(Arrays.asList("Tag1", "Tag2"));
 
         ChartItem chartItem2 = new ChartItem();
-        chartItem2.setIndex(1);
+        chartItem2.setConfId(1);
         chartItem2.setTags(Arrays.asList("Tag1", "Tag3"));
 
         ChartItem chartItem3 = new ChartItem();
-        chartItem3.setIndex(2);
+        chartItem3.setConfId(2);
         chartItem3.setTags(Arrays.asList("Tag2", "Tag3"));
 
         List<ChartItem> chartItemList = Arrays.asList(chartItem1,chartItem2,chartItem3);

@@ -1,5 +1,6 @@
 package com.dashboard.restservicedashboard.alm;
 
+import com.dashboard.commondashboard.ChartItem;
 import com.dashboard.restservicedashboard.chartitem.ChartItemFilter;
 import org.junit.Test;
 
@@ -56,7 +57,7 @@ public class ChartItemFilterTest {
         item1.setDesc("Desc 1");
         item1.setEntityType("DEFECT");
         item1.setIds(Arrays.asList(1,2,3));
-        item1.setIndex(0);
+        item1.setConfId(0);
         item1.setIsVisible(true);
         item1.setTags(Arrays.asList("AAA"));
         item1.setUsernames(Arrays.asList("pino","paperino"));
@@ -66,7 +67,7 @@ public class ChartItemFilterTest {
         item2.setDesc("Desc 1");
         item2.setEntityType("DEFECT");
         item2.setIds(Arrays.asList(1,2,3));
-        item2.setIndex(0);
+        item2.setConfId(0);
         item2.setIsVisible(true);
         item2.setTags(Arrays.asList("BBB"));
         item2.setUsernames(Arrays.asList("pino","paperino"));
@@ -76,7 +77,7 @@ public class ChartItemFilterTest {
         item3.setDesc("Desc 1");
         item3.setEntityType("DEFECT");
         item3.setIds(Arrays.asList(1,2,3));
-        item3.setIndex(0);
+        item3.setConfId(0);
         item3.setIsVisible(true);
         item3.setTags(Arrays.asList("BBB","CCC"));
         item3.setUsernames(Arrays.asList("paperino"));
@@ -86,7 +87,7 @@ public class ChartItemFilterTest {
         item4.setDesc("Desc 1");
         item4.setEntityType("DEFECT");
         item4.setIds(Arrays.asList(1,2,3));
-        item4.setIndex(0);
+        item4.setConfId(0);
         item4.setIsVisible(false);
         item4.setTags(Arrays.asList("tag1"));
         item4.setUsernames(Arrays.asList("pino","paperino"));
