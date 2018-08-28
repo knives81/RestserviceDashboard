@@ -12,6 +12,9 @@ public class AppProperties {
 	@Getter
     @Setter
     private String biDays;
+    @Getter
+    @Setter
+    private Boolean almAuthentication;
 	@Getter
     @Setter
     private String restserviceDashboardVersion;
