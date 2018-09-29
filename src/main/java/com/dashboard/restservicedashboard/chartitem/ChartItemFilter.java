@@ -31,7 +31,8 @@ public class ChartItemFilter {
     private List<ChartItem> filterByUsername(List<ChartItem> filteredByIsVisible) {
         List<ChartItem> filteredByUsername = new ArrayList<>();
         for (ChartItem chartItem : filteredByIsVisible) {
-            if (chartItem.getUsernames().contains(username)) {
+            List<String> upperUsernames = chartItem.getUsernames().stream().map(u -> u.toUpperCase()).collect(Collectors.toList());
+            if (upperUsernames.contains(username.toUpperCase())) {
                 filteredByUsername.add(chartItem);
             }
         }
