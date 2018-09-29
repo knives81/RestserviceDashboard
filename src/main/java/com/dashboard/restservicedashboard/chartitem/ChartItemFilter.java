@@ -1,8 +1,11 @@
 package com.dashboard.restservicedashboard.chartitem;
 
 import com.dashboard.commondashboard.ChartItem;
+import com.dashboard.restservicedashboard.alm.AlmDashboardController;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,8 @@ public class ChartItemFilter {
     private final List<ChartItem> chartItems;
     private final String username;
     private final String userTag;
+
+    private static final Logger log = LoggerFactory.getLogger(ChartItemFilter.class);
 
 
     public List<ChartItem> filter() {
@@ -32,7 +37,9 @@ public class ChartItemFilter {
         List<ChartItem> filteredByUsername = new ArrayList<>();
         for (ChartItem chartItem : filteredByIsVisible) {
             List<String> upperUsernames = chartItem.getUsernames().stream().map(u -> u.toUpperCase()).collect(Collectors.toList());
-            if (upperUsernames.contains(username.toUpperCase())) {
+            String upperUseraname = username.toUpperCase();
+            log.info(upperUseraname);
+            if (upperUsernames.contains(upperUseraname)) {
                 filteredByUsername.add(chartItem);
             }
         }
