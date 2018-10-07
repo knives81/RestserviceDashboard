@@ -42,6 +42,8 @@ public class ChartItemService {
     }
 
     public List<ChartItemWithGroup> getChartItemWithGroups(List<ChartItem> chartItems) {
+        chartItems.sort(Comparator.comparing(ChartItem::getConfId));
+
         List<ChartItemWithGroup> chartItemWithGroups = new ArrayList<>();
 
         LinkedHashMap<String,List<ChartItem>> groupToChartItems = new LinkedHashMap<>();
