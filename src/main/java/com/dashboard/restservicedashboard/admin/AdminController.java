@@ -3,6 +3,8 @@ package com.dashboard.restservicedashboard.admin;
 
 import com.dashboard.commondashboard.Account;
 import com.dashboard.commondashboard.AccountRepository;
+import com.dashboard.commondashboard.Pianification;
+import com.dashboard.commondashboard.PianificationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 public class AdminController {
 	
 	@Autowired
 	AccountRepository accountRepository;
+
+	@Autowired
+	PianificationRepository pianificationRepository;
 	
 	@Autowired
     PasswordEncoder passwordEncoder;
@@ -32,6 +41,16 @@ public class AdminController {
 		if (foundAccount == null) {				
 			accountRepository.save(new Account(account.getUsername(),passwordEncoder.encode(account.getPassword()),account.getRole(),account.getPushoverKey()));
 		}
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity test() {
+
+		List<Integer> testIds = new ArrayList<>(Arrays.asList(123));
+		List<Pianification> testPianfications = pianificationRepository.findByTestSetConfIdIn(testIds);
+		System.out.println(testPianfications);
+
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

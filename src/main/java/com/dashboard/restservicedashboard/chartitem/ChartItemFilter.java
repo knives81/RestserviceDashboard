@@ -38,7 +38,6 @@ public class ChartItemFilter {
         for (ChartItem chartItem : filteredByIsVisible) {
             List<String> upperUsernames = chartItem.getUsernames().stream().map(u -> u.toUpperCase()).collect(Collectors.toList());
             String upperUseraname = username.toUpperCase();
-            log.info(upperUseraname);
             if (upperUsernames.contains(upperUseraname)) {
                 filteredByUsername.add(chartItem);
             }

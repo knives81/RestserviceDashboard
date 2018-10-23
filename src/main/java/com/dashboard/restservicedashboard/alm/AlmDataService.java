@@ -1,11 +1,13 @@
 package com.dashboard.restservicedashboard.alm;
 
 import com.dashboard.commondashboard.*;
+import com.dashboard.restservicedashboard.chartcustominfo.CustomInfo;
 import com.dashboard.restservicedashboard.configuration.AppProperties;
 import com.dashboard.restservicedashboard.configuration.Entity2DataRowMapper;
 import com.dashboard.restservicedashboard.domaincontroller.ChartData;
 import com.dashboard.restservicedashboard.domaincontroller.ChartMatrix;
 import com.dashboard.restservicedashboard.notification.NotificationManager;
+import com.dashboard.restservicedashboard.chartcustominfo.CustomInfoManager;
 import com.dashboard.restservicedashboard.selector.ConfigurationService;
 import com.dashboard.restservicedashboard.selector.Selector;
 import com.dashboard.restservicedashboard.selector.SelectorManager;
@@ -40,11 +42,11 @@ public class AlmDataService {
     private ChartItemRepository chartItemRepository;
 
 	@Autowired
-	private ConfigurationService configurationService;
-
-	@Autowired
 	@Setter
 	private NotificationManager notificationManager;
+
+	@Autowired
+	private CustomInfoManager customInfoManager;
 
 	private static final Logger log = LoggerFactory.getLogger(AlmDataService.class);
 
@@ -75,7 +77,12 @@ public class AlmDataService {
 		String username = Util.getUserName();
 		notificationManager.sendMessage(username + ":"  + title);
 
+
+
 		List<DataRow> dataRows = readEntitiesFromDb(ids, entityType);
+
+		CustomInfo customInfo = customInfoManager.computeCustomInfo(ids,dataRows,entityType);
+
 		ChartMatrix chartMatrix = chartDataComputer.transform(dataRows);
 
 		ChartData chartData;
@@ -89,6 +96,7 @@ public class AlmDataService {
 			throw new RuntimeException("Type of chart not supported");
 		}
 		chartData.setTitle(title);
+		chartData.setCustomInfo(customInfo);
 		return chartData;
 	}
 
@@ -99,7 +107,7 @@ public class AlmDataService {
 	}
 
 	public List<Selector> getSelectors() {
-		return selectorManager.computeSelectors(configurationService);
+		return selectorManager.computeSelectors();
 	}
 
 

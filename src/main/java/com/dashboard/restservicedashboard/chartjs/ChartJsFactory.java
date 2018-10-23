@@ -1,6 +1,7 @@
 package com.dashboard.restservicedashboard.chartjs;
 
 import com.dashboard.commondashboard.Chart;
+import com.dashboard.restservicedashboard.chartcustominfo.CustomInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +45,7 @@ private static ChartJs getLineChart(ChartJsCompatible chartable) {
 		chartJs.setColors(getListOfBackgroundColors2(chartable.getColors()));
 		chartJs.setData(data);
 
-	    Options options = buildOption(chartable.getTitle());
+	    Options options = buildOption(chartable.getTitle(),new CustomInfo("",""));
 		chartJs.setOptions(options);
 		
 		return chartJs;
@@ -65,14 +66,14 @@ private static ChartJs getLineChart(ChartJsCompatible chartable) {
 		data.setDatasets(chartable.getDatasets());		
 		chartJs.setData(data);
 
-		Options options = buildOption(chartable.getTitle());
+		Options options = buildOption(chartable.getTitle(),chartable.getCustomInfo());
 		chartJs.setOptions(options);
 		
 		return chartJs;
 		
 	}
 
-	private static Options buildOption(String textTitle) {
+	private static Options buildOption(String textTitle, CustomInfo customInfo) {
 		Options options = new Options();
 		
 		Legend legend = new Legend();
@@ -100,6 +101,7 @@ private static ChartJs getLineChart(ChartJsCompatible chartable) {
 		title.setDisplay(true);
 		title.setText(textTitle);
 		options.setTitle(title);
+		options.setCustomInfo(customInfo);
 		
 		return options;
 	}

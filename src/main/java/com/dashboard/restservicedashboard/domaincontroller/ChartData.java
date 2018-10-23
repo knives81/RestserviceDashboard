@@ -3,6 +3,7 @@ package com.dashboard.restservicedashboard.domaincontroller;
 import com.dashboard.commondashboard.Chart;
 import com.dashboard.restservicedashboard.chartjs.ChartJsCompatible;
 import com.dashboard.restservicedashboard.chartjs.Dataset;
+import com.dashboard.restservicedashboard.chartcustominfo.CustomInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
@@ -17,9 +18,8 @@ import java.util.Map.Entry;
 @RequiredArgsConstructor
 public class ChartData implements ChartJsCompatible {
 	
-	@Getter
-    @Setter
-    String title;
+	@Getter @Setter String title;
+	@Getter @Setter	CustomInfo customInfo;
 	@Getter
     private final List<String> labels;
 	@Getter
@@ -28,6 +28,8 @@ public class ChartData implements ChartJsCompatible {
     private final List<String> colors;
 	@Getter
     private final Chart.ChartType chartType;
+
+
 	
 	@Override
 	public String toString() {

@@ -1,9 +1,12 @@
 
 package com.dashboard.restservicedashboard.chartjs;
 
+import com.dashboard.restservicedashboard.chartcustominfo.CustomInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
+import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -31,6 +34,9 @@ public class Options {
     private Boolean maintainAspectRatio;
     @JsonProperty("title")
     private Title title;
+
+    @Getter @Setter CustomInfo customInfo;
+
 
     @JsonProperty("legend")
     public Legend getLegend() {

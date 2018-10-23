@@ -73,6 +73,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
+		AlmAuthentication almAuthentication = new AlmAuthentication();
 		final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider() {
 			protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 				if (authentication.getCredentials() == null) {
@@ -82,7 +83,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					String presentedPassword = authentication.getCredentials().toString();
 					if(appProp.getAlmAuthentication()) {
 						this.logger.debug(userDetails.getUsername()+":"+presentedPassword);
-						if(!AlmAuthentication.checkAuth(userDetails.getUsername(),presentedPassword)) {
+						if(!almAuthentication.checkAuth(userDetails.getUsername(),presentedPassword,appProp)) {
 							throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
 						}
 					} else{

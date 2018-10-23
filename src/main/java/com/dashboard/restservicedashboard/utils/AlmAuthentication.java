@@ -1,5 +1,6 @@
 package com.dashboard.restservicedashboard.utils;
 
+import com.dashboard.restservicedashboard.configuration.AppProperties;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 
 
-public abstract class AlmAuthentication {
+public class AlmAuthentication {
 
 	public final static String APPLICATION_JSON = "application/json";
 	public final static String ACCEPT = "accept";
@@ -18,7 +19,6 @@ public abstract class AlmAuthentication {
 	public final static String COOKIE = "Set-Cookie";
 
 	private static final String LOGIN_ENDPOINT = "api/authentication/sign-in";
-	private static final String ALM_URL = "https://springqcent.saas.hpe.com/qcbin/";
 
 	public static final Map<String, String> headerMap;
 	static
@@ -29,12 +29,12 @@ public abstract class AlmAuthentication {
 	}
 
 	
-	private static String getUrlLogin() {
-		return ALM_URL + LOGIN_ENDPOINT;
+	private String getUrlLogin(AppProperties appProp) {
+		return appProp.getAlmUrlForAuth() + LOGIN_ENDPOINT;
 	}	
 
-	public static boolean checkAuth(String username, String password) {
-		String loginUrl = getUrlLogin();
+	public boolean checkAuth(String username, String password,AppProperties appProp) {
+		String loginUrl = getUrlLogin(appProp);
 		HttpResponse<JsonNode> postResponse = null;
 		try {
 			postResponse = Unirest.post(loginUrl)

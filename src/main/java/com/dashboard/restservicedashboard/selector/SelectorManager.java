@@ -4,6 +4,7 @@ import com.dashboard.commondashboard.Entity;
 import com.dashboard.commondashboard.EntityConfAbstract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -19,9 +20,12 @@ public class SelectorManager {
 
 	private List<SelectorHelper> helpers;
 
-	public List<Selector> computeSelectors(ConfigurationService configurationService) {
+	@Autowired
+	ConfigurationService configurationService;
 
-		helpers = initSelectorHelpers(configurationService);
+	public List<Selector> computeSelectors() {
+
+		helpers = initSelectorHelpers();
 
 		List<Selector> selectors = new ArrayList<>();
 		for (Entity.EntityType entityType : Entity.EntityType.values()) {
@@ -58,7 +62,7 @@ public class SelectorManager {
 		return selectors;
 	}
 
-	private List<SelectorHelper> initSelectorHelpers(ConfigurationService configurationService) {
+	private List<SelectorHelper> initSelectorHelpers() {
 		List<SelectorHelper> helpers = new ArrayList<>();
 		for (Entity.EntityType entityType : Entity.EntityType.values()) {
 
@@ -85,14 +89,18 @@ public class SelectorManager {
 	}
 
 	public List<Integer> getConfPositionIndex(Selector selector) {
+
+		if(helpers==null) {
+			helpers = initSelectorHelpers();
+		}
+
+
 		List<Integer> confPositionIndexes = new ArrayList<>();
 
 		Entity.EntityType entityType = selector.getEntityType();
 		List<SelectorHelper> helpersFilteredByType = helpers.stream()
 				.filter(s -> entityType.equals(s.getEntityType()))
 				.collect(Collectors.toList());
-
-		System.out.println(selector);
 
         List<Set<Integer>> confPositionIndexesByOption = new ArrayList<>();
 

@@ -9,14 +9,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(ignoreUnknownFields = false, prefix = "app")
 public class AppProperties {
 
-	@Getter
-    @Setter
-    private String biDays;
-    @Getter
-    @Setter
-    private Boolean almAuthentication;
-	@Getter
-    @Setter
-    private String restserviceDashboardVersion;
+	@Getter @Setter private String biDays;
+    @Getter @Setter private Boolean almAuthentication;
+    @Getter @Setter private String restserviceDashboardVersion;
+    @Getter @Setter private String almUrlForAuth;
 
 }
