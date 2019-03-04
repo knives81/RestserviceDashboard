@@ -1,40 +1,51 @@
 version: "3"                                             
                                                          
 services:                                                
-  mongo:                                                 
-    image: mongo                                         
-    container_name: mongo_dashboard                      
-    volumes:                                             
-      - /home/azure/mongodata:/data/db                   
-    ports:                                               
-      - "27017:27017"                                    
-    networks:                                            
-      - mynetwork
-  eurekaserver:                                    
+  eurekaserver:
     image: mauriziopinzi/eurekaserver              
-    container_name: eurekaserver                   
+    container_name: eurekaserver
+    volumes:
+      - /home/azure/eurekaconf:/home/
     ports:                                               
       - "8761:8761"                                      
     networks:                                            
       - mynetwork
   restservicedashboard1:                                    
     image: mauriziopinzi/restservicedashboard              
-    container_name: restservicedashboard1                   
+    container_name: restservicedashboard1
+    volumes:
+      - /home/azure/restserviceconf:/home/
     ports:                                               
       - "8090:8090"                                      
     networks:                                            
       - mynetwork
-    depends_on:
-      - "mongo"
+  restservicedashboard2:
+      image: mauriziopinzi/restservicedashboard
+      container_name: restservicedashboard2
+      volumes:
+        - /home/azure/restserviceconf:/home/
+      ports:
+        - "8091:8090"
+      networks:
+        - mynetwork
+  restservicedashboard3:
+      image: mauriziopinzi/restservicedashboard
+      container_name: restservicedashboard3
+      volumes:
+        - /home/azure/restserviceconf:/home/
+      ports:
+        - "8092:8090"
+      networks:
+        - mynetwork
   schedulerdashboard:                                    
     image: mauriziopinzi/schedulerdashboard              
-    container_name: schedulerdashboard                   
+    container_name: schedulerdashboard
+    volumes:
+      - /home/azure/schedulerconf:/home/
     ports:                                               
       - "8093:8093"                                      
     networks:                                            
       - mynetwork
-    depends_on:
-      - "mongo"
   nginx_load:                                    
     image: nginx              
     container_name: nginx_load
@@ -44,8 +55,6 @@ services:
       - "8089:80"                                      
     networks:                                            
       - mynetwork
-    depends_on:
-      - "mongo"
                                                          
 networks:                                                
   mynetwork:                                             

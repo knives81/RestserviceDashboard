@@ -47,10 +47,6 @@ public class AdminController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ResponseEntity test() {
 
-		List<Integer> testIds = new ArrayList<>(Arrays.asList(123));
-		List<Pianification> testPianfications = pianificationRepository.findByTestSetConfIdIn(testIds);
-		System.out.println(testPianfications);
-
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	

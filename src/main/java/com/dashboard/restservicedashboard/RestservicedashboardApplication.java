@@ -87,6 +87,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 							throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
 						}
 					} else{
+						//System.out.println(userDetails.getUsername()+"-"+userDetails.getPassword());
 						if (!this.getPasswordEncoder().matches(presentedPassword, userDetails.getPassword())) {
 							this.logger.debug("Authentication failed: password does not match stored value");
 							throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
