@@ -13,5 +13,12 @@ public class AppProperties {
     @Getter @Setter private Boolean almAuthentication;
     @Getter @Setter private String restserviceDashboardVersion;
     @Getter @Setter private String almUrlForAuth;
+    @Getter @Setter private String scheduledRateInMs;
+
+    @Getter @Setter private Boolean isSyncFolderActivated;
+    @Getter @Setter private String mongoImportPath;
+    @Getter @Setter private String collectionsToBeImported;
+    @Getter @Setter private String originFolder;
+    @Getter @Setter private String mongoHost;
 
 }
