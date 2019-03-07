@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
@@ -64,16 +65,20 @@ public class ImportService {
         for(String collection : appProp.getCollectionsToBeImported().split(",")){
             List<String> args = new ArrayList<String>();
             args.add(appProp.getMongoImportPath());
-            args.add("--host");
-            args.add(appProp.getMongoHost());
-            args.add("-d");
-            args.add("RestDashboard");
-            args.add("-c");
+            args.add("--uri");
+            args.add(appProp.getMongoUri());
+            args.add("--collection");
             args.add(collection);
-            args.add("--mode");
-            args.add("upsert");
+            args.add("--drop");
             args.add("--file");
             args.add(appProp.getOriginFolder()+collection+".json");
+
+            for(String arg : args) {
+                log.info(arg);
+            }
+
+
+
             ProcessBuilder builder = new ProcessBuilder(args);
             try {
                 Process process = builder.start();

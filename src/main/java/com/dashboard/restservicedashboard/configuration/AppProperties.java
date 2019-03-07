@@ -19,6 +19,6 @@ public class AppProperties {
     @Getter @Setter private String mongoImportPath;
     @Getter @Setter private String collectionsToBeImported;
     @Getter @Setter private String originFolder;
-    @Getter @Setter private String mongoHost;
+    @Getter @Setter private String mongoUri;
 
 }
