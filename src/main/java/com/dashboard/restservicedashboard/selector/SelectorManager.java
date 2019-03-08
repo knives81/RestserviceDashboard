@@ -67,6 +67,9 @@ public class SelectorManager {
 		for (Entity.EntityType entityType : Entity.EntityType.values()) {
 
 			EntityConfAbstract entityConf = configurationService.getEntityConf(entityType);
+			if(entityConf == null) {
+				break;
+			}
 
 			for(int indexNode = 0; indexNode<entityConf.getConfPositionIndexes().size(); indexNode++) {
 				Integer confPositionIndex = entityConf.getConfPositionIndexes().get(indexNode);

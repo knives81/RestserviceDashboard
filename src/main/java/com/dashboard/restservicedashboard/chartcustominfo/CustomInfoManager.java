@@ -29,7 +29,7 @@ public class CustomInfoManager {
             return new CustomInfo();
         }
         List<Pianification> pianifications = pianificationRepository.findByTestSetConfIdIn(ids);
-        if(pianifications.size()!=ids.size()) {
+        if(pianifications.size()!=ids.size() || pianifications.isEmpty()) {
             return new CustomInfo();
         }
 

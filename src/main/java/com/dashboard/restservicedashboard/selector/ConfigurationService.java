@@ -4,6 +4,8 @@ import com.dashboard.commondashboard.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ConfigurationService {
 	
@@ -15,12 +17,22 @@ public class ConfigurationService {
 	
 	
 	private TestsetConf getTestsetConf() {
-		return testsetConfRepository.findAll().get(0);
+		List<TestsetConf> testsetConfs = testsetConfRepository.findAll();
+		if(testsetConfs.isEmpty()) {
+			return null;
+		} else {
+			return testsetConfs.get(0);
+		}
 	}
 	private DefectConf getDefectConf() {
-		return defectConfRepository.findAll().get(0);
+		List<DefectConf> defectConfs = defectConfRepository.findAll();
+		if(defectConfs.isEmpty()) {
+			return null;
+		} else {
+			return defectConfs.get(0);
+		}
 	}
-	
+
 	
 	public EntityConfAbstract getEntityConf(Entity.EntityType entityType) {
 		if(entityType.equals(Entity.EntityType.DEFECT)) {
